@@ -1,14 +1,17 @@
 package test;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.ContPage;
+import page.SettingPage;
 import page.WelecomePage;
 
 public class DingDingTest {
 
     WelecomePage welecomePage = new WelecomePage();
     ContPage contPage = new ContPage();
+    SettingPage settingPage = new SettingPage();
 
 
     @Test
@@ -27,5 +30,14 @@ public class DingDingTest {
         welecomePage.opneContact();
         contPage.deleteMember();
     }
+
+    @Test
+    public void setTimezone() throws InterruptedException {
+        settingPage.setTimezone();
+        String text = settingPage.selectTime();
+        Assert.assertEquals(text,"GMT-08:00 安克雷奇");
+    }
+
+
 
 }
